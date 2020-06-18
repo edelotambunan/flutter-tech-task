@@ -11,10 +11,10 @@ class Ingredient {
     );
   }
 
-  /// Returns `true` if `useBy` is pass by `currentDate` or is not in the correct format(YYYY-MM-DD)
+  /// Returns `true` if `useBy` is past by `currentDate` or is not in the correct format(YYYY-MM-DD)
   bool isPastUseBy(DateTime selectedDate) {
     DateTime useByInDateTimeFormat = _parseToDateTime(this.useBy);
-    if (useByInDateTimeFormat==null || useByInDateTimeFormat.isAfter(selectedDate)) {
+    if (useByInDateTimeFormat==null || selectedDate.isAfter(useByInDateTimeFormat)) {
       return true;
     }
     return false;

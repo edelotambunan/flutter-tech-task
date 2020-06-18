@@ -12,12 +12,12 @@ class Ingredient {
   }
 
   /// Returns `true` if `useBy` is pass by `currentDate` or is not in the correct format(YYYY-MM-DD)
-  bool isPastUseBy(DateTime currentDate) {
-    DateTime useByInDateTimeFormat = _parseToDateTime(useBy);
-    if (useByInDateTimeFormat==null || useByInDateTimeFormat.isAfter(currentDate)) {
+  bool isPastUseBy(DateTime selectedDate) {
+    DateTime useByInDateTimeFormat = _parseToDateTime(this.useBy);
+    if (useByInDateTimeFormat==null || useByInDateTimeFormat.isAfter(selectedDate)) {
       return true;
     }
-    return true;
+    return false;
   }
 
   /// Returns `null` if parsing String to DateTime failed

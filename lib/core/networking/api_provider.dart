@@ -12,7 +12,7 @@ class ApiProvider {
   Future<dynamic> get(String url) async {
     var responseJson;
     try {
-      final response = await http.get(url);
+      final response = await httpClient.get(url);
       responseJson = _response(response);
     } on SocketException {
       throw DefaultException('No Internet connection');

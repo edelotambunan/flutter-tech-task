@@ -1,6 +1,7 @@
 class Ingredient {
   final String title;
   final String useBy;
+  bool isSelected = false;
 
   Ingredient({this.title, this.useBy});
 
@@ -29,4 +30,6 @@ class Ingredient {
       return null;
     }
   }
+
+
 }

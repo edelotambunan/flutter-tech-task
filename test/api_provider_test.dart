@@ -22,6 +22,30 @@ void main (){
   group('ApiProvider', (){
     final mockHttpClient = MockHttpClient();
     final mockApiProvider = MockApiProvider(mockHttpClient);
+    test('Throw DefaultException if response body is empty', () async {
+      final mockEmptyResponse = '';
+
+      when(mockHttpClient.get(url)).thenAnswer((_) async => Future.value(http.Response(mockEmptyResponse, 200)));
+      try {
+        await mockApiProvider.get(url);
+        fail("No Exception thrown");
+      } catch (exception) {
+        expect(exception, isInstanceOf<DefaultException>());
+      }
+    });
+
+    test('Throw DefaultException if response body cannot be decoded to json', () async {
+      final mockInvalidJsonResponse = '{{{}}}';
+
+      when(mockHttpClient.get(url)).thenAnswer((_) async => Future.value(http.Response(mockInvalidJsonResponse, 200)));
+      try {
+        await mockApiProvider.get(url);
+        fail("No Exception thrown");
+      } catch (exception) {
+        expect(exception, isInstanceOf<DefaultException>());
+      }
+    });
+
     test('Return json array (List) if response code 200', () async {
       final mockSuccessResponse = '''[{"title": "Ham","use-by": "2020-11-25"}]''';
 

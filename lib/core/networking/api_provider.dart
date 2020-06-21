@@ -23,7 +23,17 @@ class ApiProvider {
   dynamic _response(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        var responseJson = json.decode(response.body.toString());
+        if (response.body.toString().isEmpty){
+          throw DefaultException('Data not found');
+        }
+
+        var responseJson;
+        try{
+          responseJson = json.decode(response.body.toString());
+        } on FormatException{
+          throw DefaultException('Data incompatible');
+        }
+
         return responseJson;
       case 400:
         throw ClientErrorException(response.body.toString());

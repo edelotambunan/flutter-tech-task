@@ -101,7 +101,6 @@ class _FridgeScreenState extends State<FridgeScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-//        onPressed: () => setState(() => _count++),
         tooltip: 'Find recipes',
         child: const Icon(Icons.search),
       )
@@ -121,34 +120,5 @@ class _FridgeScreenState extends State<FridgeScreen> {
         _fridge.selectedDate = picked;
         _fridge.clearSelection();
       });
-  }
-}
-
-class FridgeView extends StatelessWidget {
-  final Fridge fridge;
-
-  const FridgeView({Key key, this.fridge}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: fridge.ingredientList.length,
-      itemBuilder: (context, index) {
-        return Card(
-            child: ListTile(
-              title: Text('${fridge.ingredientList[index].title}'),
-              subtitle: Text('Usable until: ${fridge.ingredientList[index].useBy}'),
-              selected: fridge.ingredientList[index].isSelected,
-              onTap: () {
-                  if (fridge.ingredientList[index].isSelected)
-                    fridge.ingredientList[index].isSelected = false;
-                  else
-                    fridge.ingredientList[index].isSelected = true;
-              },
-              enabled:!fridge.ingredientList[index].isPastUseBy(fridge.selectedDate)
-            )
-        );
-      },
-    );
   }
 }

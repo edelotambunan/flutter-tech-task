@@ -15,6 +15,6 @@ class Recipe{
 
   String getIngredientsString(){
     String ingredientsString = ingredients.toString();
-    return ingredientsString.substring(1,ingredientsString.length-1).trim();
+    return ingredientsString.substring(1,ingredientsString.length-1);
   }
 }

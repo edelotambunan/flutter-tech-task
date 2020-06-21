@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:tech_task/core/networking/api_provider.dart';
 import 'package:tech_task/core/networking/api_response.dart';
 import 'package:tech_task/features/fridge/models/fridge.dart';
-import 'package:tech_task/features/fridge/models/ingredient.dart';
 import 'package:tech_task/features/fridge/repositories/fridge_repository.dart';
 
 class FridgeBloc{

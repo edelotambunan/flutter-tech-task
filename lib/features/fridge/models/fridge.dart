@@ -16,4 +16,17 @@ class Fridge {
   void clearSelection() {
     ingredientList.forEach((element) {element.isSelected=false;});
   }
+
+  String selectedIngredients (){
+    List<String> stringIngredientList = new List<String>();
+    ingredientList.forEach((element) {
+      if (element.isSelected) stringIngredientList.add(element.title);
+    });
+    return _getIngredientsString(stringIngredientList).trim();
+  }
+
+  String _getIngredientsString(List<String> stringIngredientList){
+    String ingredientsString = stringIngredientList.toString();
+    return ingredientsString.substring(1,ingredientsString.length-1).replaceAll(" ", "");
+  }
 }

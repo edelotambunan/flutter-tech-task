@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_task/core/config/app_routes.dart';
 import 'package:tech_task/core/networking/api_response.dart';
 import 'package:tech_task/core/widget/app_error_widget.dart';
 import 'package:tech_task/core/widget/app_list_tile.dart';
@@ -15,12 +16,10 @@ class FridgeScreen extends StatefulWidget {
 class _FridgeScreenState extends State<FridgeScreen> {
   FridgeBloc _fridgeBloc;
   Fridge _fridge;
-  bool isFirstLoad;
 
   @override
   void initState() {
     super.initState();
-    isFirstLoad = true;
     _fridge = Fridge.empty();
     _fridgeBloc = FridgeBloc();
     WidgetsBinding.instance
@@ -101,6 +100,7 @@ class _FridgeScreenState extends State<FridgeScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, AppRoutes.recipesRoute, arguments: _fridge.selectedIngredients()),
         tooltip: 'Find recipes',
         child: const Icon(Icons.search),
       )
